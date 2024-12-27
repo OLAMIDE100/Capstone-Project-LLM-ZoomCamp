@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+   name: strealit-application
+   namespace: argocd
+   finalizers:
+   - resources-finalizer.argocd.argoproj.io
+spec:
+  project: llm-project
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: llm
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+  sources:
+    - repoURL: git@github.com:OLAMIDE100/Capstone-Project-LLM-ZoomCamp.git
+      path: infrastructure/kubernetes/manifests/streamlit
+      targetRevision: main
