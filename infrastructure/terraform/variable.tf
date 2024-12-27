@@ -11,7 +11,7 @@ variable "image_tag" {
 variable "oidc_provider" {
   description = "OIDC Provider URL for the EKS Cluster"
   type = string
-  default = "oidc.eks.eu-central-1.amazonaws.com/id/79E3BF571E7B03CF7519DB24FBFFEF63"
+  default = "oidc.eks.eu-central-1.amazonaws.com/id/6632F40BB403FEA6089A6443FFBE1101"
 }
 
 

@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: llm-project
+  namespace: argocd
+spec:
+  sourceRepos:
+  - 'https://helm.elastic.co'
+  - 'git@github.com:OLAMIDE100/Capstone-Project-LLM-ZoomCamp.git'
+  destinations:
+  - namespace: 'llm'
+    server: 'https://kubernetes.default.svc'
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'

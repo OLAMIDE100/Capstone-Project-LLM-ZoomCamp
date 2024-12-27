@@ -682,7 +682,7 @@ resource "aws_iam_role" "aws-eks-secret-role" {
         Condition = {
           StringEquals = {
             "${var.oidc_provider}:aud" = "sts.amazonaws.com"
-            "${var.oidc_provider}:sub" = "system:serviceaccount:llm:${var.service_account}"
+            "${var.oidc_provider}:sub" = "system:serviceaccount:default:${var.service_account}"
           }
         }
       }
