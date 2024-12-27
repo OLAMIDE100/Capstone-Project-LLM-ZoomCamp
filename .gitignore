@@ -1,0 +1,9 @@
+infra_down.sh
+infra_up.sh
+infrastructure/terraform/.terraform
+infrastructure/terraform/.terraform.lock.hcl
+instruction.sh
+llm_project_env
+text_retrieval_evaluation/__pycache__
+infrastructure/streamlit/app/__pycache__
+infrastructure/streamlit/app/.env

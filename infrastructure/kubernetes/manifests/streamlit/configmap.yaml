@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: env-cred
+  namespace: llm
+data:
+  POSTGRES_DB: "comparative_guide_assistant"
+  POSTGRES_USER: "postgres"
+  MODEL_NAME: "all-mpnet-base-v2"
+  INDEX_NAME: "comparative-guide-vector"
+  ELASTIC_URL: "https://a44bb122f8b304048bca7e375b58e6dd-615416553.eu-central-1.elb.amazonaws.com:9200"
+  

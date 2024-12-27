@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: streamlit
+  labels:
+    app: streamlit
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: streamlit
+  template:
+    metadata:
+      labels:
+        app: streamlit
+    spec:
+      containers:
+      - name: streamlit
+        image: 659592047885.dkr.ecr.eu-central-1.amazonaws.com/streamlit:1
+        ports:
+        - containerPort: 8501
+        envFrom:
+        - configMapRef:
+            name: env-cred
+        env:
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: secrets-manager-secret
+              key: postgrespassword
+        - name: ELASTIC_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: elasticsearch-master-credentials
+              key: password
+        - name: ELASTIC_USERNAME
+          valueFrom:
+            secretKeyRef:
+              name: elasticsearch-master-credentials
+              key: username
+        - name: POSTGRES_HOST
+          valueFrom:
+            secretKeyRef:
+              name: secrets-manager-secret
+              key: hostname
+        - name: OPENAI_KEY
+          valueFrom:
+            secretKeyRef:
+              name: secrets-manager-secret
+              key: openaikey

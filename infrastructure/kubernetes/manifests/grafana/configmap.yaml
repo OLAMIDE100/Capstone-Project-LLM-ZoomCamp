@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: gra-cred
+  namespace: llm
+data:
+  GF_SECURITY_ADMIN_USER: "mide"
+  GF_DATABASE_TYPE: "postgres"
+  GF_DATABASE_NAME: "comparative_guide_assistant"
+  GF_DATABASE_USER: "postgres"
+  
+ 
+  
+  
