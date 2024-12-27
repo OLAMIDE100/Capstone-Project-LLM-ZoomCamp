@@ -298,7 +298,7 @@ ingress:
   #      - chart-example.local
 
 nameOverride: ""
-fullnameOverride: ""
+fullnameOverride: "elasticsearch-data"
 healthNameOverride: ""
 
 lifecycle: {}

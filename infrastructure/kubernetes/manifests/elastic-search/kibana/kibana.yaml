@@ -165,7 +165,7 @@ tolerations: []
 affinity: {}
 
 nameOverride: ""
-fullnameOverride: ""
+fullnameOverride: "kibana"
 
 lifecycle: {}
 # preStop:
