@@ -3,8 +3,6 @@ kind: Application
 metadata:
    name: search-application
    namespace: argocd
-   finalizers:
-   - resources-finalizer.argocd.argoproj.io
 spec:
   project: llm-project
   destination:
@@ -32,8 +30,6 @@ kind: Application
 metadata:
    name: data-search-application
    namespace: argocd
-   finalizers:
-   - resources-finalizer.argocd.argoproj.io
 spec:
   project: llm-project
   destination:
@@ -61,8 +57,6 @@ kind: Application
 metadata:
    name: client-search-application
    namespace: argocd
-   finalizers:
-   - resources-finalizer.argocd.argoproj.io
 spec:
   project: llm-project
   destination:
@@ -90,8 +84,6 @@ kind: Application
 metadata:
    name: kibana-application
    namespace: argocd
-   finalizers:
-   - resources-finalizer.argocd.argoproj.io
 spec:
   project: llm-project
   destination:
