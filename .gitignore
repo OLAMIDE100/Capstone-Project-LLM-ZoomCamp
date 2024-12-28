@@ -8,3 +8,4 @@ text_retrieval_evaluation/__pycache__
 infrastructure/streamlit/app/__pycache__
 infrastructure/streamlit/app/.env
 argocd/key
+/deployment_up.yml

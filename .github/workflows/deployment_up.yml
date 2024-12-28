@@ -7,6 +7,9 @@ on:
     paths:
      - 'infrastructure/terraform/**'
      - 'infrastructure/kubernetes/**'
+
+env:
+  AWS_REGION: MY_AWS_REGION                                     
    
 
 jobs:
@@ -35,18 +38,29 @@ jobs:
     - name: Setup_Terraform
       uses: hashicorp/setup-terraform@v1
 
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ env.AWS_REGION }}
+
     - name: terraform
       if: steps.changes.outputs.terraform == 'true' 
       run: |
             echo "this terraform specific deployment"
-            pwd
+            terraform --version
             ls
+
 
     - name: kubernetes
       if: steps.changes.outputs.kubernetes == 'true' 
       run: |
             echo "this kubernetes specific deployment"
-            pwd
-            ls
+            kubectl version
+            aws --version
+            aws eks --version
+            aws s3api get-bucket-location --bucket llm-terraform-backend  --region eu-central-1 
+            
 
     
