@@ -69,8 +69,8 @@ else
             ]
         }"
 
+fi
 
-        
 aws iam attach-role-policy \
 --role-name aws-eks-secret-role \
 --policy-arn arn:aws:iam::aws:policy/SecretsManagerReadWrite
