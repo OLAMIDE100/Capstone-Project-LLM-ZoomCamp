@@ -270,7 +270,6 @@ imagePullSecrets: []
 nodeSelector: {}
 tolerations: []
 
-
 # Enabling this will publicly expose your Elasticsearch instance.
 # Only enable this if you have security enabled on your cluster
 ingress:

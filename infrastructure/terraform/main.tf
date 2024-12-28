@@ -665,38 +665,6 @@ resource "null_resource" "build_and_push_docker_image" {
 }
 
 
-################################################################################################################### SECRET STORE CONFIGURATION #########################################################################################
-#######################################################################################################################################################################################################################################
-
-resource "aws_iam_role" "aws-eks-secret-role" {
-  name = "aws-eks-secret-role"
-
-  assume_role_policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Effect = "Allow"
-        Principal = {
-          Federated = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:oidc-provider/${var.oidc_provider}"
-        }
-        Action = "sts:AssumeRoleWithWebIdentity"
-        Condition = {
-          StringEquals = {
-            "${var.oidc_provider}:aud" = "sts.amazonaws.com"
-            "${var.oidc_provider}:sub" = "system:serviceaccount:default:${var.service_account}"
-          }
-        }
-      }
-    ]
-  })
-}
-
-resource "aws_iam_role_policy_attachment" "SecretsManagerReadWrite" {
-  policy_arn = "arn:aws:iam::aws:policy/SecretsManagerReadWrite"
-  role       = aws_iam_role.aws-eks-secret-role.name
-}
-
-
 ################################################################################################################### DATABASE CONFIGURATION #########################################################################################
 #######################################################################################################################################################################################################################################
 

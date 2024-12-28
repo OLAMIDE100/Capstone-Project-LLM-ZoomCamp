@@ -49,8 +49,15 @@ jobs:
       if: steps.changes.outputs.terraform == 'true' 
       run: |
             echo "this terraform specific deployment"
-            terraform --version
-            ls
+            bash deploy.sh
+            
+
+    - name: secret_manager_accessor_configuration
+      if: steps.changes.outputs.terraform == 'true' 
+      run: |
+            echo "this terraform specific deployment"
+            bash secret_manager.sh
+            
 
 
     - name: kubernetes
