@@ -4,9 +4,9 @@ export TF_VAR_db_password=$(aws secretsmanager get-secret-value --secret-id post
 
 
 
-echo 'yes' | terraform -chdir=infrastructure/terraform init  -backend-config="./backend.config"
-echo 'yes' | terraform -chdir=infrastructure/terraform plan 
-echo 'yes' | terraform -chdir=infrastructure/terraform apply 
+terraform -chdir=infrastructure/terraform init  -backend-config="./backend.config"
+terraform -chdir=infrastructure/terraform plan 
+terraform -chdir=infrastructure/terraform apply  apply -input=false -auto-approve
 
 
 
