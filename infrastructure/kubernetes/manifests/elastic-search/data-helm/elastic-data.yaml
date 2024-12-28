@@ -275,6 +275,7 @@ clusterHealthCheckParams: "wait_for_status=green&timeout=1s"
 ##
 schedulerName: ""
 
+
 imagePullSecrets: []
 nodeSelector: {}
 tolerations: []

@@ -57,10 +57,10 @@ jobs:
       if: steps.changes.outputs.kubernetes == 'true' 
       run: |
             echo "this kubernetes specific deployment"
-            kubectl version
             aws --version
             aws eks --version
             aws s3api get-bucket-location --bucket llm-terraform-backend  --region eu-central-1 
+            kubectl version
             
 
     
