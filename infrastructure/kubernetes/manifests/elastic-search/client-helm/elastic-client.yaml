@@ -318,7 +318,6 @@ sysctlInitContainer:
 
 keystore: []
 
-
 networkPolicy:
   ## Enable creation of NetworkPolicy resources. Only Ingress traffic is filtered for now.
   ## In order for a Pod to access Elasticsearch, it needs to have the following label:
