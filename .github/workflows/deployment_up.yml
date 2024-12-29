@@ -73,6 +73,7 @@ jobs:
         propertyPath: 'spec.template.spec.containers[0].image'
         value: 659592047885.dkr.ecr.eu-central-1.amazonaws.com/streamlit:${GITHUB_RUN_NUMBER}-${GITHUB_RUN_ATTEMPT}
         commitChange: true
+        
 
             
 
