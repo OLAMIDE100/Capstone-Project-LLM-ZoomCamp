@@ -2,8 +2,8 @@
 
 curl https://baltocdn.com/helm/signing.asc | gpg --dearmor |  tee /usr/share/keyrings/helm.gpg > /dev/null
 
-apt-get install apt-transport-https --yes
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" |   tee /etc/apt/sources.list.d/helm-stable-debian.list
-apt-get update
-apt-get install helm
-apt-get install gettext-base
+sudo apt-get install apt-transport-https --yes
+sudo echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" |   tee /etc/apt/sources.list.d/helm-stable-debian.list
+sudo apt-get update
+sudo apt-get install helm
+sudo apt-get install gettext-base
