@@ -46,7 +46,7 @@ jobs:
       run: |
             bash script/secret_manager.sh
             helm repo add external-secrets https://charts.external-secrets.io
-            helm upgrade --install external-secrets external-secret/external-secrets  -f  argocd/deployment_manifests/helm_values/secret_values.yaml
+            helm upgrade --install external-secrets external-secrets/external-secrets  -f  argocd/deployment_manifests/helm_values/secret_values.yaml
 
     - name: secret_store_setup 
       run: |
