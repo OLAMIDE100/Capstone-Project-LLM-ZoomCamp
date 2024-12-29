@@ -52,6 +52,8 @@ jobs:
       run: |
             kubectl apply -f argocd/deployment_manifests/secret/service_account.yaml
             kubectl apply -f  argocd/deployment_manifests/secret/secret-store.yml
+            kubectl apply -f argocd/deployment_manifests/secret/argocd-aws-secret.yaml
+
 
     - name: argo_deployment_setup 
       run: |
@@ -71,7 +73,7 @@ jobs:
         valueFile: 'infrastructure/kubernetes/manifests/streamlit/deployment.yaml'
         propertyPath: 'spec.template.spec.containers[0].image'
         value: 659592047885.dkr.ecr.eu-central-1.amazonaws.com/streamlit:${GITHUB_RUN_NUMBER}-${GITHUB_RUN_ATTEMPT}
-        commitChange: false
+        commitChange: true
 
             
 
