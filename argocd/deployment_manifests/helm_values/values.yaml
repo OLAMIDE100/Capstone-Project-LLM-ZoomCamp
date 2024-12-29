@@ -491,7 +491,7 @@ configs:
     #   url: https://github.com/argoproj
     #   password: my-password
     #   username: my-username
-    #ssh-creds:
+    ssh-creds:
     #  url: git@bitbucket.org:nabuminds/dremio.git
     #  sshPrivateKey: |
     #    -----BEGIN OPENSSH PRIVATE KEY-----
@@ -508,6 +508,10 @@ configs:
       url: https://helm.elastic.co
       name: elastic-helm-repo
       type: helm
+    general-repo:
+      url: git@github.com:OLAMIDE100/Capstone-Project-LLM-ZoomCamp.git
+      name: general-repo
+      type: git
        
   # -- Annotations to be added to `configs.repositories` Secret
   repositoriesAnnotations: {}

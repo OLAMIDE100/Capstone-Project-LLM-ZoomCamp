@@ -5,8 +5,8 @@ on:
     branches:
      - "main"
     paths:
-     - 'infrastructure/terraform/**'
-     - 'infrastructure/kubernetes/**'
+     - 'infrastructure/**'
+     - 'argocd/**'
 
 env:
   AWS_REGION: eu-central-1                                     
@@ -22,52 +22,67 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    - name: Detect_Changes
-      uses: dorny/paths-filter@v2
-      id: changes
-      with:
 
-        base: 'main'
 
-        filters: |
-          terraform:
-            - 'infrastructure/terraform/**'
-          kubernetes:
-            - 'infrastructure/kubernetes/**'
-
-    - name: Setup_Terraform
+    - name: Setup_terraform
       uses: hashicorp/setup-terraform@v1
 
-    - name: Configure AWS credentials
+    - name: Setup_aws_envirronment
       uses: aws-actions/configure-aws-credentials@v1
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ env.AWS_REGION }}
 
-    - name: terraform
-      if: steps.changes.outputs.terraform == 'true' 
+    - name: cloud_infrastructure_deployment
       run: |
-            echo "this terraform specific deployment"
-            bash deploy.sh
+            bash script/deploy.sh
+            
+    - name: Setup_helm_environment
+      run: |
+            bash script/helm.sh
+
+    - name: external_secrets_setup 
+      run: |
+            bash script/secret_manager.sh
+            helm repo add external-secrets https://charts.external-secrets.io
+            helm upgrade --install external-secret external-secret/external-secrets  -f  argocd/deployment_manifests/helm_values/secret_values.yaml
+
+    - name: secret_store_setup 
+      run: |
+            kubectl apply -f argocd/deployment_manifests/secret/service_account.yaml
+            kubectl apply -f  argocd/deployment_manifests/secret/secret-store.yml
+
+    - name: argo_deployment_setup 
+      run: |
+            kubectl create namespace argocd
+            kubectl create namespace llm
+            helm repo add argo https://argoproj.github.io/argo-helm
+            helm upgrade --install argocd argo/argo-cd --version 7.5.2  -f argocd/deployment_manifests/helm_values/values.yaml --debug
+
+    - name: llm_infra_support_setup
+      run: |
+            kubectl apply -f argocd/application_manifests/support.yaml
+
+        
+    - name: Update .yaml
+      uses: fjogeleit/yaml-update-action@main
+      with:
+        valueFile: 'infrastructure/kubernetes/manifests/streamlit/deployment.yaml'
+        propertyPath: 'spec.template.spec.containers[0].image'
+        value: 659592047885.dkr.ecr.eu-central-1.amazonaws.com/streamlit:${{GITHUB_RUN_NUMBER}}-${{GITHUB_RUN_ATTEMPT}}
+        commitChange: false
+
             
 
-    - name: secret_manager_accessor_configuration
-      if: steps.changes.outputs.kubernetes == 'true' 
+    - name: llm_elasticsearch_setup
       run: |
-            echo "this terraform specific deployment"
-            bash secret_manager.sh
-            
+            kubectl apply -f argocd/application_manifests/elastic_search.yaml
 
-
-    - name: kubernetes
-      if: steps.changes.outputs.kubernetes == 'true' 
+    - name: llm_streamlit_grafana_setup
       run: |
-            echo "this kubernetes specific deployment"
-            aws --version
-            aws eks --version
-            aws s3api get-bucket-location --bucket llm-terraform-backend  --region eu-central-1 
-            kubectl version
-            
+            kubectl apply -f argocd/application_manifests/streamlit.yaml
+            kubectl apply -f argocd/application_manifests/grafana.yaml
+
 
     
