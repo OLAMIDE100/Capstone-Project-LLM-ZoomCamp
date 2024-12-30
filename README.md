@@ -70,6 +70,11 @@ You can find the data in [`data`](data/raw_data.csv).
 - ElaticSearch as the vector databaseb for retrieval
 - Terraform as the IAC tool
 - Helm for workload deployment in kubernetes
+- Argocd for declarative, GitOps continuous delivery  for Kubernetes
+
+<p align="center">
+  <img src="images/LLM_EKS.png">
+</p>
 
 ## Cloud Technologies
 
