@@ -443,3 +443,8 @@ The monitoring dashboard contains several panels:
 
 ## Acknowledgements 
 
+I am extremely grateful for the time this set of wonderful people put in place to ensure we understood the various aspect of rag and llm engineering
+
+* [Alexey Grigorev](https://www.linkedin.com/in/agrigorev/) 
+
+
