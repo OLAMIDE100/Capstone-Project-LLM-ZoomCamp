@@ -1,5 +1,3 @@
-infra_down.sh
-infra_up.sh
 infrastructure/terraform/.terraform
 infrastructure/terraform/.terraform.lock.hcl
 instruction.sh

@@ -5,7 +5,8 @@ on:
     branches:
      - "main"
     paths:
-     - 'argocd/**'
+     - data/documents_id.json
+    
 
 env:
   AWS_REGION: eu-central-1                                     
