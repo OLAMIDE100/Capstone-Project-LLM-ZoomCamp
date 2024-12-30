@@ -1,5 +1,6 @@
 
-export TF_VAR_image_tag=${GITHUB_RUN_NUMBER}-${GITHUB_RUN_ATTEMPT}
+#export TF_VAR_image_tag=${GITHUB_RUN_NUMBER}-${GITHUB_RUN_ATTEMPT}
+export TF_VAR_image_tag=1
 export TF_VAR_db_password=$(aws secretsmanager get-secret-value --secret-id postgres-secret   --query SecretString --output text |  jq -r '."postgrespassword"')
 
 
