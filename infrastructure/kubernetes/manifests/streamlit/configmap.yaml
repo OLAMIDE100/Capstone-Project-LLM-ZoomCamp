@@ -8,5 +8,5 @@ data:
   POSTGRES_USER: "postgres"
   MODEL_NAME: "all-mpnet-base-v2"
   INDEX_NAME: "comparative-guide-vector"
-  ELASTIC_URL: "https://a44bb122f8b304048bca7e375b58e6dd-615416553.eu-central-1.elb.amazonaws.com:9200"
+  ELASTIC_URL: "https://aa9cff7acb0564857bd9957c90a7a654-667968242.eu-central-1.elb.amazonaws.com:9200"
   
