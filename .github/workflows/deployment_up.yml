@@ -50,6 +50,8 @@ jobs:
 
     - name: secret_store_setup 
       run: |
+            kubectl create namespace argocd
+            kubectl create namespace llm
             kubectl apply -f argocd/deployment_manifests/secret/service_account.yaml
             kubectl apply -f  argocd/deployment_manifests/secret/secret-store.yml
             kubectl apply -f argocd/deployment_manifests/secret/argocd-aws-secret.yaml
@@ -57,8 +59,6 @@ jobs:
 
     - name: argo_deployment_setup 
       run: |
-            kubectl create namespace argocd
-            kubectl create namespace llm
             helm repo add argo https://argoproj.github.io/argo-helm
             helm upgrade --install argocd argo/argo-cd --version 7.5.2  -f argocd/deployment_manifests/helm_values/values.yaml --debug
 
