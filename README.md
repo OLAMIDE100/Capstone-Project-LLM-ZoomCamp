@@ -99,6 +99,107 @@ You can find the data in [`data`](data/raw_data.csv).
 
 ## Running the application
 
+```
+├── README.md
+├── argocd
+│   ├── application_manifests
+│   │   ├── elastic_search.yaml
+│   │   ├── grafana.yaml
+│   │   ├── streamlit.yaml
+│   │   └── support.yaml
+│   ├── deployment_manifests
+│   │   ├── helm_values
+│   │   │   ├── secret_values.yaml
+│   │   │   └── values.yaml
+│   │   └── secret
+│   │       ├── argocd-aws-secret.yaml
+│   │       ├── secret-store.yml
+│   │       └── service_account.yaml
+│   ├── key
+│   │   ├── repo
+│   │   └── repo.pub
+│   └── project_manifests
+│       └── llm-project.yaml
+├── data
+│   ├── documents_id.json
+│   ├── generated_questions.bin
+│   ├── ground-truth-data.csv
+│   ├── rag-eval-gpt-4o-mini.csv
+│   └── raw_data.csv
+├── data_preparation
+│   ├── groud_truth_preparation.ipynb
+│   └── load_vector_database.ipynb
+├── images
+│   ├── argocd.png
+│   ├── cover.jpg
+│   ├── grafana.png
+│   ├── kibana.png
+│   └── streamlit.png
+├── infra_down.sh
+├── infra_up.sh
+├── infrastructure
+│   ├── kubernetes
+│   │   ├── help
+│   │   │   └── dashboard.json
+│   │   └── manifests
+│   │       ├── elastic-search
+│   │       │   ├── client-helm
+│   │       │   │   └── elastic-client.yaml
+│   │       │   ├── data-helm
+│   │       │   │   └── elastic-data.yaml
+│   │       │   ├── kibana
+│   │       │   │   └── kibana.yaml
+│   │       │   └── master-helm
+│   │       │       └── elastic-master.yaml
+│   │       ├── grafana
+│   │       │   ├── configmap.yaml
+│   │       │   ├── deployment.yaml
+│   │       │   ├── pvc.yaml
+│   │       │   ├── secrets.yml
+│   │       │   └── service.yaml
+│   │       ├── helper
+│   │       │   ├── secrets.yml
+│   │       │   └── storageclass.yaml
+│   │       └── streamlit
+│   │           ├── configmap.yaml
+│   │           ├── deployment.yaml
+│   │           └── service.yaml
+│   ├── streamlit
+│   │   ├── Dockerfile
+│   │   ├── app
+│   │   │   ├── __pycache__
+│   │   │   │   └── db.cpython-311.pyc
+│   │   │   ├── app.py
+│   │   │   ├── assistant.py
+│   │   │   ├── data
+│   │   │   │   └── data.csv
+│   │   │   ├── db.py
+│   │   │   ├── minsearch.py
+│   │   │   ├── prep.py
+│   │   │   └── template.py
+│   │   └── requirements.txt
+│   └── terraform
+│       ├── backend.config
+│       ├── main.tf
+│       └── variable.tf
+├── instruction.sh
+├── rag_evaluation
+│   └── rag_eval.ipynb
+├── script
+│   ├── deploy.sh
+│   ├── helm.sh
+│   ├── namespace.sh
+│   └── secret_manager.sh
+├── text_retrieval_evaluation
+│   ├── __pycache__
+│   │   └── minsearch.cpython-311.pyc
+│   ├── minsearch.py
+│   └── text_eval.ipynb
+└── vector_retrieval_evaluation
+    ├── hybird_search_reranking.ipynb
+    └── vector_eval.ipynb
+```
+
 - Create python virtual environment
 
 ```
@@ -230,6 +331,7 @@ python3 infrastructure/streamlit/app/prep.py
 <p align="center">
   <img src="images/kibana.png">
 </p>
+
 ## Using the application
 
 <p align="center">
@@ -315,7 +417,7 @@ It's accessible at [LOADBALANCER_URL:3000](http://LOADBALANCER_URL:3000):
 
 
 
-### Dashboards
+## Dashboards
 
 <p align="center">
   <img src="images/grafana.png">
