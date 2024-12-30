@@ -226,6 +226,10 @@ python3 infrastructure/streamlit/app/prep.py
 <p align="center">
   <img src="images/argocd.png">
 </p>
+
+<p align="center">
+  <img src="images/kibana.png">
+</p>
 ## Using the application
 
 <p align="center">
@@ -307,10 +311,9 @@ For `gpt-4o-mini`, in a sample with 200 records, we had:
 
 We use Grafana for monitoring the application. 
 
-It's accessible at [localhost:3000](http://localhost:3000):
+It's accessible at [LOADBALANCER_URL:3000](http://LOADBALANCER_URL:3000):
 
-- Login: "admin"
-- Password: "admin"
+
 
 ### Dashboards
 

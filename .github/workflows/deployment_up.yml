@@ -5,7 +5,8 @@ on:
     branches:
      - "main"
     paths:
-     - data/documents_id.json
+      
+      - 'data/documents_id.json'
     
 
 env:
@@ -50,8 +51,7 @@ jobs:
 
     - name: secret_store_setup 
       run: |
-            kubectl create namespace argocd
-            kubectl create namespace llm
+            bash script/namespace.sh
             kubectl apply -f argocd/deployment_manifests/secret/service_account.yaml
             kubectl apply -f  argocd/deployment_manifests/secret/secret-store.yml
             kubectl apply -f argocd/deployment_manifests/secret/argocd-aws-secret.yaml
