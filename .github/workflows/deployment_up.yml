@@ -57,7 +57,8 @@ jobs:
 
     - name: argo_deployment_setup 
       run: |
-            
+            kubectl create namespace argocd
+            kubectl create namespace llm
             helm repo add argo https://argoproj.github.io/argo-helm
             helm upgrade --install argocd argo/argo-cd --version 7.5.2  -f argocd/deployment_manifests/helm_values/values.yaml --debug
 
@@ -65,17 +66,7 @@ jobs:
       run: |
             kubectl apply -f argocd/application_manifests/support.yaml
 
-        
-    - name: Update .yaml
-      uses: fjogeleit/yaml-update-action@main
-      with:
-        valueFile: 'infrastructure/kubernetes/manifests/streamlit/deployment.yaml'
-        propertyPath: 'spec.template.spec.containers[0].image'
-        value: 659592047885.dkr.ecr.eu-central-1.amazonaws.com/streamlit:${GITHUB_RUN_NUMBER}-${GITHUB_RUN_ATTEMPT}
-        commitChange: true
-        
-
-            
+                
 
     - name: llm_elasticsearch_setup
       run: |
