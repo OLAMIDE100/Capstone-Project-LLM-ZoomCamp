@@ -44,13 +44,13 @@ The dataset used in this project contains information about
 various service, including:
 
 Service category,Service type,Link to Documentation,Google Cloud product,Google Cloud product description,AWS offering,Azure offering
-- **Service Category:** The name of the exercise (e.g., Push-Ups, Squats).
-- **Service Type:** The general category of the exercise (e.g., Strength, Mobility, Cardio).
-- **Google Cloud Product:** The part of the body primarily targeted by the exercise (e.g., Upper Body, Core, Lower Body).
-- **Documentation Link:** The equipment needed for the exercise (e.g., Bodyweight, Dumbbells, Kettlebell).
-- **Product Description:** The movement type (e.g., Push, Pull, Hold, Stretch).
-- **AWS Offering:** The specific muscles engaged during
-- **Azure Offering:** Step-by-step guidance on how to perform the
+- **Service Category:** The name of the cloud service.
+- **Service Type:** The general category of the service.
+- **Google Cloud Product:** The google cloud offering to that service.
+- **Documentation Link:** The link to the google cloud documentation of that service.
+- **Product Description:** The product description.
+- **AWS Offering:** The AWS equivalent
+- **Azure Offering:** The Azure equivalent
 
 The dataset was extracted from googlre documentation and contains 222 records. It serves as the foundation for the Comparartive Cloud product recommendations and instructional support for Cloud Engineers aspiring to pick up multi-cloud with google as the reference point.
 
